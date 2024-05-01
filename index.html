@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather App</title>
+  <link rel="shortcut icon" type="image/png" href="favicon.png">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Weather Shield</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Decentralized AI-Powered Disaster Response System by Akash</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="aboutthisapp.html">About this App</a>
+          </li>
+         </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Enter City" id="city" aria-label="Search">
+          <button class="btn btn-outline-success" type="button" id="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1 class="my-4 text-center">Weather data for <span id="cityName"></span></h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- Cards -->
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Temperature</h5>
+            <p class="card-text">Temperature is <span id="temp"></span></p>
+            <p class="card-text">Min Temp is <span id="min_temp"></span></p>
+            <p class="card-text">Max Temp is <span id="max_temp"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Humidity Info</h5>
+            <p class="card-text"> Rain is <span id="rain"></span></p>
+            <p class="card-text">Feels like <span id="feels_like"></span></p>
+            <p class="card-text">Humidity is <span id="humidity"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Wind Info</h5>
+            <p class="card-text">Wind Speed is <span id="wind_speed"></span></p>
+            <p class="card-text">Wind Direction <span id="wind_direction"> </span></p>
+            <p class="card-text">Wind Gusts <span id="wind_gusts"></span></p>
+          </div>
+        </div>
+      </div>
+      <!-- Cards end -->
+    </div>
+
+    <h2 class="display-6 text-center my-4">ENTER your city or country</h2>
+
+    
+
+  <!-- Google Maps Section -->
+  <div id="map" style="height: 600px; width: 600px; margin: 0 auto;"></div>
+
+  <!-- Logo Section -->
+  <div class="container text-center mt-5">
+    <img src="logo1.png" alt="Weather Shield Logo" class="img-fluid" style="max-width: 800px;">
+  </div>
+  
+  <!-- Alerts Section -->
+  <div class="container mt-5">
+    <h2 class="text-center">Alert System is online</h2>
+    <div class="alert alert-danger alert-tsunami" role="alert">
+      No tsunami expected on Earth's position!
+    </div>
+    <div class="alert alert-danger alert-earthquake" role="alert">
+      No earthquake is coming towards Earth's position!
+    </div>
+    <div class="alert alert-danger alert-hurricane" role="alert">
+      No Hurricanes is coming towards Earth's position!
+    </div>
+    <div class="alert alert-danger alert-wildfire" role="alert">
+      No wildfire close to current position <span id="cityNameAlert"></span>!
+    </div>
+  </div>
+
+   <!-- Earthquake Feed -->
+   <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">Recent Earthquakes live</h4>
+    <ul id="earthquake-feed"></ul>
+  </div>
+</div>
+  <!-- Team and Social Media Section -->
+  <div class="container mt-5 team-section-bg text-center">
+    <h2 class="mb-4" style="color: black;">Meet Our Team</h2>
+    <div class="btn-group">
+      <a href="https://twitter.com/yourhandle" class="btn btn-primary m-2" target="_blank">Twitter1</a>
+      <a href="https://twitter.com/yourhandle" class="btn btn-primary m-2" target="_blank">Twitter2</a>
+      <a href="https://github.com/" class="btn btn-primary m-2" target="_blank">Github1</a>
+      <a href="https://github.com/" class="btn btn-primary m-2" target="_blank">Github2</a>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="text-center mt-5">
+    <p>All rights reserved @2024. This app was made by Rodri and Mr_Tom for the Akash Hackathon project. Never base critical decisions on this app or any weather information from the Internet.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/somanchiu/Keyless-Google-Maps-API@v6.6/mapsJavaScriptAPI.js"></script>
+  <script>
+    document.getElementById('submit').addEventListener('click', function(event) {
+      event.preventDefault();
+      const city = document.getElementById('city').value;
+      geocodeAddress(city);
+    });
+  
+    function geocodeAddress(address) {
+      fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address))
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            const latitude = parseFloat(data[0].lat);
+            const longitude = parseFloat(data[0].lon);
+            const cityName = data[0].display_name;
+            console.log('City Coordinates:', latitude, longitude);
+            updateAlerts(cityName, latitude, longitude);
+            initMap(latitude, longitude, cityName);
+          } else {
+            console.error('Geocoding was not successful for the given address.');
+          }
+        })
+        .catch(error => {
+          console.error('An error occurred while geocoding: ' + error);
+        });
+    }
+  
+    function updateAlerts(cityName, latitude, longitude) {
+      const tsunamiAlert = document.querySelector('.alert-tsunami');
+      const earthquakeAlert = document.querySelector('.alert-earthquake');
+      const hurricaneAlert = document.querySelector('.alert-hurricane');
+      const wildfireAlert = document.querySelector('.alert-wildfire');
+  
+      tsunamiAlert.textContent = `No tsunami expected at coordinates: ${latitude}, ${longitude} for ${cityName}!`;
+      earthquakeAlert.textContent = `No earthquake expected at coordinates: ${latitude}, ${longitude} for ${cityName}!`;
+      hurricaneAlert.textContent = `No hurricanes expected at coordinates: ${latitude}, ${longitude} for ${cityName}!`;
+      wildfireAlert.textContent = `No wildfire close to coordinates: ${latitude}, ${longitude} for ${cityName}!`;
+    }
+  
+    function initMap(latitude, longitude, cityName) {
+      const map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: latitude, lng: longitude },
+        zoom: 8
+      });
+  
+      const marker = new google.maps.Marker({
+        position: { lat: latitude, lng: longitude },
+        map: map,
+        draggable: true
+      });
+  
+      marker.addListener('dragend', function(event) {
+        const pos = {
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng()
+        };
+        updatePosition(pos);
+      });
+  
+      map.addListener('click', function(event) {
+        const pos = {
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng()
+        };
+        updatePosition(pos);
+      });
+  
+      fetchWeatherData(latitude, longitude, cityName);
+    }
+  
+    function updatePosition(pos) {
+      fetchWeatherData(pos.lat, pos.lng);
+    }
+  
+    function fetchWeatherData(latitude, longitude, cityName) {
+      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&minutely_15=rain,snowfall&hourly=temperature_2m,relative_humidity_2m,dew_point_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,snow_depth,cloud_cover,cloud_cover_low,cloud_cover_mid,cloud_cover_high,visibility,evapotranspiration,et0_fao_evapotranspiration,vapour_pressure_deficit&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,rain_sum&timezone=auto&forecast_days=1`;
+  
+      fetch(weatherUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Weather data request failed');
+          }
+          return response.json();
+        })
+        .then(data => {
+          updateUI(data, cityName);
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error);
+        });
+    }
+  
+    function updateUI(data, cityName) {
+      // Update UI with weather data here
+      // For example:
+      document.getElementById('cityName').textContent = cityName;
+      document.getElementById('temp').textContent = data.current.temperature_2m + "°C";
+      document.getElementById('min_temp').textContent = data.daily.temperature_2m_min + "°C";
+      document.getElementById('max_temp').textContent = data.daily.temperature_2m_max + "°C";
+      document.getElementById('rain').textContent = data.current.precipitation + "mm";
+      document.getElementById('feels_like').textContent = data.current.apparent_temperature + "°C";
+      document.getElementById('humidity').textContent = data.current.relative_humidity_2m + "%";
+      document.getElementById('wind_speed').textContent = data.current.wind_speed_10m + "km/hr";
+      document.getElementById('wind_direction').textContent = data.current.wind_direction_10m + "°";
+      document.getElementById('wind_gusts').textContent = data.current.wind_gusts_10m + "km/hr";
+    }
+  </script>
+  <script>
+    // Function to fetch and display the earthquake feed
+    function fetchEarthquakeFeed() {
+      // URL of the USGS Earthquake Atom feed
+      const feedURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.atom";
+      //const feedURL = "https://www.usgs.gov/programs/162/news/feed";
+  
+      // Fetch the feed
+      fetch(feedURL)
+        .then(response => response.text())
+        .then(xml => {
+          // Parse XML response
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xml, "text/xml");
+  
+          // Get entries from the XML document
+          const entries = xmlDoc.getElementsByTagName("entry");
+  
+          // Clear existing feed content
+          document.getElementById("earthquake-feed").innerHTML = "";
+  
+          // Iterate over each entry and display title, location, and time
+          for (let i = 0; i < entries.length; i++) {
+            const title = entries[i].getElementsByTagName("title")[0].textContent;
+            const location = entries[i].getElementsByTagName("georss:point")[0].textContent;
+            const time = entries[i].getElementsByTagName("updated")[0].textContent;
+  
+            // Create list item element
+            const listItem = document.createElement("li");
+  
+            // Construct earthquake information string
+            const earthquakeInfo = `${title} - Location: ${location}, Time: ${time}`;
+  
+            // Set list item content
+            listItem.textContent = earthquakeInfo;
+  
+            // Append list item to the list
+            document.getElementById("earthquake-feed").appendChild(listItem);
+          }
+        })
+        .catch(error => console.error("Error fetching earthquake feed:", error));
+    }
+  
+    // Call the fetchEarthquakeFeed function initially
+    fetchEarthquakeFeed();
+  
+    // Fetch the earthquake feed every 5 minutes (300,000 milliseconds)
+    setInterval(fetchEarthquakeFeed, 300000);
+  </script>
+  
+</body>
+
+</html>
